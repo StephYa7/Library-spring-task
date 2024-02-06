@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Person {
-    String fullName;
-    int yearOfBirth;
+public class Book {
+    String name;
+    String author;
+    int yearOfWriting;
 }
