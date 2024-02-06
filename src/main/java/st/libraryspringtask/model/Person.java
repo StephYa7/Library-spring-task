@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Person {
-    String fullName;
-    int yearOfBirth;
+    private int id;
+        private String fullName;
+    private int yearOfBirth;
 }
