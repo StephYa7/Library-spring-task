@@ -15,7 +15,7 @@
 
 LIST ALL BOOK FOR THIS Person!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-<form th:method="DELETE" th:action="@{/people/{id}(id=${person.id})}">
+<form th:method="POST" th:action="@{/people/{id}/edit(id=${person.id})}">
     <input type="submit" value="Delete"/>
 
 </form>

@@ -1,15 +1,16 @@
 package st.libraryspringtask.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import st.libraryspringtask.model.Person;
 import st.libraryspringtask.repository.PeopleRepository;
 
 import java.util.List;
 
+@Log
 @Controller
 @AllArgsConstructor
 @RequestMapping("/people")
@@ -25,13 +26,13 @@ public class PeopleController {
 
     @GetMapping("/{id}")
     public String index(@PathVariable("id") int id, Model model) {
-        model.addAttribute("person", peopleRepository.getUserById(id));
+        model.addAttribute("person", peopleRepository.getPersonById(id));
         return "people/index";
     }
 
     @GetMapping("{id}/edit")
     public String edit(@PathVariable("id") int id, Model model) {
-        model.addAttribute("person", peopleRepository.getUserById(id));
+        model.addAttribute("person", peopleRepository.getPersonById(id));
         return "people/edit";
     }
 
@@ -46,7 +47,7 @@ public class PeopleController {
 
     @GetMapping("{id}/update")
     public String redactor(@PathVariable("id") int id, Model model) {
-        Person person = peopleRepository.getUserById(id);
+        Person person = peopleRepository.getPersonById(id);
         model.addAttribute("person", person);
         return "update";
     }
@@ -63,7 +64,7 @@ public class PeopleController {
         return "redirect:/people";
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}/edit")
     public String delete(@PathVariable("id") int id) {
         peopleRepository.delete(id);
         return "redirect:/people";

@@ -1,50 +1,47 @@
 package st.libraryspringtask.repository;
 
+
+import lombok.AllArgsConstructor;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import st.libraryspringtask.model.Book;
-import st.libraryspringtask.model.Book;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor
 public class BooksRepository {
-    List<Book> books = new ArrayList<>();
-
-    {
-        books.add(new Book(1,"BookName a1", "Author b1", 1));
-        books.add(new Book(2,"BookName a2", "Author b2", 1));
-        books.add(new Book(3,"BookName a3", "Author b3", 1));
-        books.add(new Book(4,"BookName a4", "Author b4", 1));
-        books.add(new Book(5,"BookName a5", "Author b5", 1));
-        books.add(new Book(6,"BookName a6", "Author b6", 1));
-        books.add(new Book(7,"BookName a7", "Author b7", 1));
-        books.add(new Book(8,"BookName a8", "Author b8", 1));
-    }
-
-
-    public Book getBookById(int id) {
-        return books.get(id);
-    }
+    private final JdbcTemplate jdbcTemplate;
 
     public List<Book> findAll() {
-        return books;
+        String sql = "SELECT * FROM books";
+        var a= jdbcTemplate.query(sql, new BookMapper());
+        System.out.println(a);
+        return a;
     }
 
+    public Book save(Book book) {
+        String sql = "INSERT INTO books (name,author,yearOfWriting) VALUES ( ?, ?, ?)";
+        jdbcTemplate.update(sql, book.getName(), book.getAuthor(), book.getYearOfWriting());
+        return book;
+    }
+
+    public Book getBookById(int id) {
+        String sql = "SELECT * FROM books WHERE book_id = ?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new BookMapper());
+    }
 
     public void update(int id, Book updateBook) {
-        Book oldBook = getBookById(id);
-        oldBook.setName(updateBook.getName());
-        oldBook.setAuthor(updateBook.getAuthor());
-        oldBook.setYearOfWriting(updateBook.getYearOfWriting());
+        jdbcTemplate.update("UPDATE books SET name=?, author=?, yearOfWriting=? WHERE book_id=?",
+                updateBook.getName(),
+                updateBook.getAuthor(),
+                updateBook.getYearOfWriting(),
+                id);
     }
 
     public void delete(int id) {
-        books.remove(getBookById(id));
-    }
-
-    public void save(Book book) {
-        System.out.println(book);
-        books.add(book);
+        String sql = "DELETE FROM books WHERE book_id=?";
+        jdbcTemplate.update(sql, id);
     }
 }

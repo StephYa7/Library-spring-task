@@ -1,15 +1,16 @@
 package st.libraryspringtask.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import st.libraryspringtask.model.Book;
-import st.libraryspringtask.model.Person;
 import st.libraryspringtask.repository.BooksRepository;
 
 import java.util.List;
 
+@Log
 @Controller
 @AllArgsConstructor
 @RequestMapping("/books")
@@ -63,7 +64,7 @@ public class BooksController {
         return "redirect:/books";
     }
 
-    @DeleteMapping("/{id}")
+    @PostMapping("/{id}/edit")
     public String delete(@PathVariable("id") int id) {
         bookRepository.delete(id);
         return "redirect:/books";

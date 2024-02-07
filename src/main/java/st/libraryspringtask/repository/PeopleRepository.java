@@ -1,47 +1,48 @@
 package st.libraryspringtask.repository;
 
+import lombok.AllArgsConstructor;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import st.libraryspringtask.model.Person;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor
 public class PeopleRepository {
-    List<Person> people = new ArrayList<>();
+    private final JdbcTemplate jdbcTemplate;
 
-    {
-        people.add(new Person(1, "name a1", 1));
-        people.add(new Person(2, "name a2", 1));
-        people.add(new Person(3, "name a3", 2));
-        people.add(new Person(4, "name a4", 2));
-        people.add(new Person(5, "name a5", 2));
-        people.add(new Person(6, "name a6", 6));
-        people.add(new Person(7, "name a7", 7));
-        people.add(new Person(8, "name a8", 8));
-    }
-
-    public Person getUserById(int id) {
-        return people.stream().filter(person -> person.getId() == id).findFirst().get();
-    }
 
     public List<Person> findAll() {
-        return people;
+        String sql = "SELECT * FROM people";
+        var a = jdbcTemplate.query(sql, new PersonMapper());
+        System.out.println(a);
+        return a;
     }
 
+    public Person save(Person person) {
+        String sql = "INSERT INTO people (fullName,yearOfBirth) VALUES (?, ?)";
+        jdbcTemplate.update(sql, person.getFullName(), person.getYearOfBirth());
+        return person;
+    }
+
+    public Person getPersonById(int id) {
+        String sql = "SELECT * FROM people WHERE person_id = ?";
+        jdbcTemplate.queryForObject(sql, new Object[]{id}, new PersonMapper());
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new PersonMapper());
+
+    }
 
     public void update(int id, Person updatePerson) {
-        Person oldPerson = getUserById(id);
-        oldPerson.setFullName(updatePerson.getFullName());
-        oldPerson.setYearOfBirth(updatePerson.getYearOfBirth());
+        jdbcTemplate.update("UPDATE people SET fullName=?, yearOfBirth=? WHERE person_id=?",
+                updatePerson.getFullName(),
+                updatePerson.getYearOfBirth(),
+                id);
     }
 
     public void delete(int id) {
-        people.remove(getUserById(id));
-    }
-
-    public void save(Person person) {
-        System.out.println(person);
-        people.add(person);
+        String sql = "DELETE FROM people WHERE person_id=?";
+        jdbcTemplate.update(sql, id);
     }
 }

@@ -19,7 +19,7 @@ VIBERITE KOMU NAZNACCHIT
 <a th:href="@{/books/{id}/edit(id=${book.id})}">Edit</a>
 
 
-<form th:method="DELETE" th:action="@{/books/{id}(id=${book.id})}">
+<form th:method="POST" th:action="@{/books/{id}/edit(id=${book.id})}">
     <input type="submit" value="Delete"/>
 
 </form>
