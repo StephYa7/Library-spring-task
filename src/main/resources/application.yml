@@ -4,3 +4,14 @@ spring:
     url: jdbc:postgresql://localhost:3367/library_db
     username: admin
     password: password
+database:
+  find-all-books: "SELECT * FROM books"
+  find-all-people: "SELECT * FROM people"
+  save-book: "INSERT INTO books (name,author,yearOfWriting) VALUES ( ?, ?, ?)"
+  save-person: "INSERT INTO people (fullName,yearOfBirth) VALUES (?, ?)"
+  get-book-by-id: "SELECT * FROM books WHERE book_id = ?"
+  get-person-by-id: "SELECT * FROM people WHERE person_id = ?"
+  update-book: "UPDATE books SET name=?, author=?, yearOfWriting=? WHERE book_id=?"
+  update-person: "UPDATE people SET fullName=?, yearOfBirth=? WHERE person_id=?"
+  delete-book: "DELETE FROM books WHERE book_id=?"
+  delete-person: "DELETE FROM people WHERE person_id=?"
