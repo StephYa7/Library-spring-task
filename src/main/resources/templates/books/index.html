@@ -2,35 +2,28 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Book</title>
 </head>
 <body>
 
-<!--<div th:switch="${users}">-->
-<!--    <h2 th:case="null">No users found!</h2>-->
-<!--    <div th:case="*">-->
-<!--        <h2>Users</h2>-->
-<!--        <table>-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th>Id</th>-->
-<!--                <th>First name</th>-->
-<!--                <th>Last name</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr th:each="user : ${users}">-->
-<!--                <td th:text="${user.id}"></td>-->
-<!--                <td th:text="${user.firstName}"></td>-->
-<!--                <td th:text="${user.lastName}"></td>-->
-<!--                <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>-->
-<!--                <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--    </div>-->
-<!--    <p><a href="/user-create">Create user</a></p>-->
-<!--</div>-->
+<p th:text="'id :' + ${book.id}">VALUE</p>
+<p th:text="'name :' + ${book.name}">VALUE</p>
+<p th:text="'author :' + ${book.author}">VALUE</p>
+<p th:text="'yearOfWriting :' + ${book.yearOfWriting}">VALUE</p>
+
+
+IF THIS BOOK FREE
+VIBERITE KOMU NAZNACCHIT
+
+
+<a th:href="@{/books/{id}/edit(id=${book.id})}">Edit</a>
+
+
+<form th:method="DELETE" th:action="@{/books/{id}(id=${book.id})}">
+    <input type="submit" value="Delete"/>
+
+</form>
+
 
 </body>
 </html>

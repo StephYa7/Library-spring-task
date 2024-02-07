@@ -53,14 +53,12 @@ public class PeopleController {
 
     @GetMapping("/new")
     public String newForm(Model model) {
-        System.out.println("new form method called");
         model.addAttribute("person", new Person());
         return "people/new";
     }
 
     @PostMapping("/new")
     public String create(@ModelAttribute("person") Person person) {
-        System.out.println("create method");
         peopleRepository.save(person);
         return "redirect:/people";
     }
