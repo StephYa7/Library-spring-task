@@ -3,20 +3,23 @@
 <meta charset="UTF-8">
 <title>Update book</title>
 </head>
+
 <body>
 
-<form th:method="PATCH" th:action="@{/books/{id}(id=${book.id})}" th:object="${book}">
-    <label for="name">Enter name: </label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <br/>
-    <label for="author">Enter author: </label>
-    <input type="text" th:field="*{author}" id="author"/>
-    <br/>
-    <label for="yearOfWriting">Enter yearOfWriting: </label>
-    <input type="text" th:field="*{yearOfWriting}" id="yearOfWriting"/>
-    <br/>
-    <input type="submit" value="Update!"/>
-</form>
+    <form th:method="PATCH" th:action="@{/books/{id}(id=${book.id})}" th:object="${book}">
+        <label for="name">Enter name: </label>
+        <input type="text" th:field="*{name}" id="name" />
+        <br />
+        <label for="author">Enter author: </label>
+        <input type="text" th:field="*{author}" id="author" />
+        <br />
+        <label for="yearOfWriting">Enter yearOfWriting: </label>
+        <input type="text" th:field="*{yearOfWriting}" id="yearOfWriting" />
+        <br />
+        <input type="submit" value="Update!" />
+    </form>
+
+
 
 
 </body>
