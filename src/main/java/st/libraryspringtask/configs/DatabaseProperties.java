@@ -19,4 +19,6 @@ public class DatabaseProperties {
     private String updateBook;
     private String deleteBook;
     private String getAllPersonBook;
+    private String removePersonId;
+    private String addPersonInBook;
 }

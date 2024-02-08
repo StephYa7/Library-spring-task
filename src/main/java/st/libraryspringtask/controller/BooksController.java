@@ -77,13 +77,13 @@ public class BooksController {
 
     @PostMapping("/{id}")
     public String delPersonFromBook(@PathVariable("id") int id) {
-        bookRepository.removePersonId(id);
+        bookRepository.changePersonIdInBook(id,0);
         return "redirect:/books/{id}";
     }
 
     @PatchMapping("/{id}/addPerson")
     public String addPersonInBook(@PathVariable("id") int id, @ModelAttribute("person") Person person) {
-        bookRepository.addPersonInBook(id, person.getId());
+        bookRepository.changePersonIdInBook(id, person.getId());
         return "redirect:/books/{id}";
     }
 }

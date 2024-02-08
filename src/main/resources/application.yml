@@ -16,3 +16,5 @@ database:
   delete-book: "DELETE FROM books WHERE book_id=?"
   delete-person: "DELETE FROM people WHERE person_id=?"
   get-all-person-book: "SELECT * FROM Books WHERE person_id =?"
+  remove-person-id: "UPDATE books SET person_id=null WHERE book_id=?"
+  add-person-in-book: "UPDATE books SET person_id=? WHERE book_id=?"
