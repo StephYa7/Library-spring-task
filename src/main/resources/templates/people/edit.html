@@ -2,19 +2,24 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
 <title>Create user</title>
+<link rel="stylesheet" href="style.css">
+<link th:href="@{/styles/css/main.css}" rel="stylesheet" />
+
 </head>
+
 <body>
 
-<form th:method="PATCH" th:action="@{/people/{id}(id=${person.id})}" th:object="${person}">
-    <label for="fullName">Enter fullName: </label>
-    <input type="text" th:field="*{fullName}" id="fullName"/>
-    <br/>
-    <label for="yearOfBirth">Enter yearOfBirth: </label>
-    <input type="text" th:field="*{yearOfBirth}" id="yearOfBirth"/>
-    <br/>
-    <input type="submit" value="Update!"/>
-</form>
+    <form th:method="PATCH" th:action="@{/people/{id}(id=${person.id})}" th:object="${person}">
+        <label for="fullName">Enter fullName: </label>
+        <input type="text" th:field="*{fullName}" id="fullName" />
+        <br />
+        <label for="yearOfBirth">Enter yearOfBirth: </label>
+        <input type="text" th:field="*{yearOfBirth}" id="yearOfBirth" />
+        <br />
+        <input type="submit" value="Update!" />
+    </form>
 
 
 </body>
+
 </html>

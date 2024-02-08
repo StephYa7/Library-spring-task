@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>People</title>
+    <link rel="stylesheet" href="style.css">
+    <link th:href="@{/styles/css/main.css}" rel="stylesheet" />
+
 </head>
+
 <body>
 
 
-<div th:each="person : ${people}">
+    <div th:each="person : ${people}">
 
-    <a th:href="@{/people/{id}(id=${person.id})}"
-       th:text="${person.fullName + ', ' + person.yearOfBirth}">person</a>
-</div>
+        <a th:href="@{/people/{id}(id=${person.id})}"
+            th:text="${person.fullName + ', ' + person.yearOfBirth}">person</a>
+    </div>
 
-<br/>
+    <br />
 
-<a href="/people/new">Create new person</a>
+    <a href="/people/new">Create new person</a>
 
 </body>
+
 </html>
