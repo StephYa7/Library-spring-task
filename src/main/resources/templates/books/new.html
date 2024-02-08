@@ -5,24 +5,24 @@
     <meta charset="UTF-8">
     <title>Create book</title>
     <link rel="stylesheet" href="style.css">
-    <link th:href="@{/styles/css/main.css}" rel="stylesheet" />
+    <link th:href="@{/styles/css/main.css}" rel="stylesheet"/>
 
 </head>
 
 <body>
 
-    <form th:method="PATCH" th:action="@{/books/new}" th:object="${book}">
-        <label for="name">Enter name: </label>
-        <input type="text" th:field="*{name}" id="name" />
-        <br />
-        <label for="author">Enter author: </label>
-        <input type="text" th:field="*{author}" id="author" />
-        <br />
-        <label for="yearOfWriting">Enter yearOfWriting: </label>
-        <input type="number" th:field="*{yearOfWriting}" id="yearOfWriting" />
-        <br />
-        <input type="submit" value="Create!" />
-    </form>
+<form th:method="PATCH" th:action="@{/books/new}" th:object="${book}">
+    <label for="name">Введите название: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="author">Введите автора: </label>
+    <input type="text" th:field="*{author}" id="author"/>
+    <br/>
+    <label for="yearOfWriting">Введите год издания: </label>
+    <input type="number" th:field="*{yearOfWriting}" id="yearOfWriting"/>
+    <br/>
+    <input type="submit" value="Создать!"/>
+</form>
 
 
 </body>

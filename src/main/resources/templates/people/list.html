@@ -3,24 +3,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>People</title>
+    <title>Список читателей</title>
     <link rel="stylesheet" href="style.css">
-    <link th:href="@{/styles/css/main.css}" rel="stylesheet" />
+    <link th:href="@{/styles/css/main.css}" rel="stylesheet"/>
 
 </head>
 
 <body>
+<p>Список читателей: </p>
 
 
-    <div th:each="person : ${people}">
+<div th:each="person : ${people}">
 
-        <a th:href="@{/people/{id}(id=${person.id})}"
-            th:text="${person.fullName + ', ' + person.yearOfBirth}">person</a>
-    </div>
+    <a th:href="@{/people/{id}(id=${person.id})}"
+       th:text="${person.fullName + ', ' + person.yearOfBirth}">person</a>
+</div>
 
-    <br />
+<br/>
 
-    <a href="/people/new">Create new person</a>
+<form action="/people/new"><input type="submit" value="Добавить нового читателя"/>
+</form>
+
 
 </body>
 

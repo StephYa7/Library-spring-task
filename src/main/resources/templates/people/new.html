@@ -10,13 +10,13 @@
 
 <body>
     <form class="formClass" th:method="PATCH" th:action="@{/people/new}" th:object="${person}">
-        <label for="fullName">Enter fullName: </label>
+        <label for="fullName">Введите ФИО : </label>
         <input type="text" th:field="*{fullName}" id="fullName" />
         <br />
-        <label for="yearOfBirth">Enter yearOfBirth: </label>
+        <label for="yearOfBirth">Введите год рождения : </label>
         <input type="number" th:field="*{yearOfBirth}" id="yearOfBirth" />
         <br />
-        <input type="submit" value="Create!" />
+        <input type="submit" value="Создать читателя!" />
     </form>
 
 </body>

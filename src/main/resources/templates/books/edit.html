@@ -10,20 +10,17 @@
 <body>
 
     <form th:method="PATCH" th:action="@{/books/{id}(id=${book.id})}" th:object="${book}">
-        <label for="name">Enter name: </label>
+        <label for="name">Введите название: </label>
         <input type="text" th:field="*{name}" id="name" />
         <br />
-        <label for="author">Enter author: </label>
+        <label for="author">Введите автора: </label>
         <input type="text" th:field="*{author}" id="author" />
         <br />
-        <label for="yearOfWriting">Enter yearOfWriting: </label>
+        <label for="yearOfWriting">Введите год издания: </label>
         <input type="text" th:field="*{yearOfWriting}" id="yearOfWriting" />
         <br />
-        <input type="submit" value="Update!" />
+        <input type="submit" value="Обновить!" />
     </form>
-
-
-
 
 </body>
 

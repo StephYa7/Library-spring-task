@@ -5,34 +5,36 @@
     <meta charset="UTF-8">
     <title>User</title>
     <link rel="stylesheet" href="style.css">
-    <link th:href="@{/styles/css/main.css}" rel="stylesheet" />
+    <link th:href="@{/styles/css/main.css}" rel="stylesheet"/>
 </head>
 
 <body>
 
-    <p th:text="'id :' + ${person.id}">VALUE</p>
-    <p th:text="'fullName :' + ${person.fullName}">VALUE</p>
-    <p th:text="'yearOfBirth :' + ${person.yearOfBirth}">VALUE</p>
-
-
-    <a th:href="@{/people/{id}/edit(id=${person.id})}">Edit</a>
-
-    <p>Books: </p>
+<p th:text="'Номер :' + ${person.id}">VALUE</p>
+<p th:text="'ФИО :' + ${person.fullName}">VALUE</p>
+<p th:text="'Год рождения :' + ${person.yearOfBirth}">VALUE</p>
 
 
 
-    <div th:if="${books.isEmpty()}">This person has no books</div>
-    <div th:unless="${books.isEmpty()}">
-        <div th:each="book   : ${books}">
-            <a th:text="${book.name + ', ' + book.author}">Boooooks</a>
-        </div>
+
+
+<div th:if="${books.isEmpty()}">У этого читателя нет книг на руках</div>
+<div th:unless="${books.isEmpty()}">
+    <p>Список книг на руках: </p>
+    <div th:each="book   : ${books}">
+        <a th:text="${book.name + ', ' + book.author}">Boooooks</a>
     </div>
+</div>
 
 
-    <form th:method="DELETE" th:action="@{/people/{id}(id=${person.id})}">
-        <input type="submit" value="Delete" />
+<form th:action="@{/people/{id}/edit(id=${person.id})}">
+    <input type="submit" value=" Редактировать данные читателя"/>
+</form>
 
-    </form>
+<form th:method="DELETE" th:action="@{/people/{id}(id=${person.id})}">
+    <input type="submit" value="Удалить читателя"/>
+
+</form>
 
 
 </body>
