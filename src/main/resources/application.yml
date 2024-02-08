@@ -4,6 +4,11 @@ spring:
     url: jdbc:postgresql://localhost:3367/library_db
     username: admin
     password: password
+#    schema: schema.sql
+#  sql:
+#    init:
+#      schema-locations: classpath:/schema.sql
+
 database:
   find-all-books: "SELECT * FROM books"
   find-all-people: "SELECT * FROM people"
