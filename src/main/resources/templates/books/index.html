@@ -1,29 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>Book</title>
 </head>
+
 <body>
 
-<p th:text="'id :' + ${book.id}">VALUE</p>
-<p th:text="'name :' + ${book.name}">VALUE</p>
-<p th:text="'author :' + ${book.author}">VALUE</p>
-<p th:text="'yearOfWriting :' + ${book.yearOfWriting}">VALUE</p>
+    <p th:text="'id :' + ${book.id}">VALUE</p>
+    <p th:text="'name :' + ${book.name}">VALUE</p>
+    <p th:text="'author :' + ${book.author}">VALUE</p>
+    <p th:text="'yearOfWriting :' + ${book.yearOfWriting}">VALUE</p>
+
+    <br />
+    <br />
+
+    <div th:if="${book.person_id == 0}">This book has no person
+        <form th:method="POST" th:action="@{/books/{id}}">
+
+            <label for="person">Choose person: </label>
+            <select th:object="${person}" th:field="*{id}" id="person">
+                <option th:each="person : ${people}" th:value="${person.id}" th:text="${person.fullName}"></option>
+            </select>
+            <input type="submit" value="choise people" />
+
+        </form>
+    </div>
 
 
-IF THIS BOOK FREE
-VIBERITE KOMU NAZNACCHIT
+
+    <div th:unless="${book.person_id == 0}">
+        <p th:text="'Book now at :' + ${book.person_id}">VALUE</p>
+
+        <form th:method="POST" th:action="@{/books/{id}}">
+            <input type="submit" value="FREE THE BOOK" />
+        </form>
+    </div>
 
 
-<a th:href="@{/books/{id}/edit(id=${book.id})}">Edit</a>
+
+    <br />
+    <br />
 
 
-<form th:method="POST" th:action="@{/books/{id}/edit(id=${book.id})}">
-    <input type="submit" value="Delete"/>
+    <a th:href="@{/books/{id}/edit(id=${book.id})}">Edit</a>
 
-</form>
+
+    <form th:method="DELETE" th:action="@{/books/{id}(id=${book.id})}">
+        <input type="submit" value="Delete" />
+
+    </form>
 
 
 </body>
+
 </html>

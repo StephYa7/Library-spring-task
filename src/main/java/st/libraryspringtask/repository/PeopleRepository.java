@@ -5,6 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import st.libraryspringtask.configs.DatabaseProperties;
+import st.libraryspringtask.model.Book;
 import st.libraryspringtask.model.Person;
 
 import java.util.List;
@@ -41,5 +42,9 @@ public class PeopleRepository {
 
     public void delete(int id) {
         jdbcTemplate.update(databaseProperties.getDeletePerson(), id);
+    }
+    public List<Book> getAllPersonBook(int id) {
+        return jdbcTemplate.query(databaseProperties.getGetAllPersonBook()
+                , new Object[]{id}, new BookMapper());
     }
 }

@@ -18,4 +18,5 @@ public class DatabaseProperties {
     private String getBookById;
     private String updateBook;
     private String deleteBook;
+    private String getAllPersonBook;
 }

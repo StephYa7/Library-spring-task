@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class Book {
 
     private int id;
+    private int person_id;
     private String name;
     private String author;
     private int yearOfWriting;

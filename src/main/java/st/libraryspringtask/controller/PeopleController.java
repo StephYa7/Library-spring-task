@@ -27,6 +27,7 @@ public class PeopleController {
     @GetMapping("/{id}")
     public String index(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", peopleRepository.getPersonById(id));
+        model.addAttribute("books", peopleRepository.getAllPersonBook(id));
         return "people/index";
     }
 
@@ -36,7 +37,7 @@ public class PeopleController {
         return "people/edit";
     }
 
-    @PostMapping("/{id}")
+    @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") Person person,
                          @PathVariable("id") int id) {
 
@@ -58,13 +59,13 @@ public class PeopleController {
         return "people/new";
     }
 
-    @PostMapping("/new")
+    @PatchMapping("/new")
     public String create(@ModelAttribute("person") Person person) {
         peopleRepository.save(person);
         return "redirect:/people";
     }
 
-    @PostMapping("/{id}/edit")
+    @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         peopleRepository.delete(id);
         return "redirect:/people";

@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <title>User</title>
 </head>
+
 <body>
 
-<p th:text="'id :' + ${person.id}">VALUE</p>
-<p th:text="'fullName :' + ${person.fullName}">VALUE</p>
-<p th:text="'yearOfBirth :' + ${person.yearOfBirth}">VALUE</p>
+    <p th:text="'id :' + ${person.id}">VALUE</p>
+    <p th:text="'fullName :' + ${person.fullName}">VALUE</p>
+    <p th:text="'yearOfBirth :' + ${person.yearOfBirth}">VALUE</p>
 
 
-<a th:href="@{/people/{id}/edit(id=${person.id})}">Edit</a>
+    <a th:href="@{/people/{id}/edit(id=${person.id})}">Edit</a>
 
-LIST ALL BOOK FOR THIS Person!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    <p>Books: </p>
 
-<form th:method="POST" th:action="@{/people/{id}/edit(id=${person.id})}">
-    <input type="submit" value="Delete"/>
 
-</form>
+
+    <div th:if="${books.isEmpty()}">This person has no books</div>
+    <div th:unless="${books.isEmpty()}">
+        <div th:each="book   : ${books}">
+            <a th:text="${book.name + ', ' + book.author}">Boooooks</a>
+        </div>
+    </div>
+
+
+    <form th:method="DELETE" th:action="@{/people/{id}(id=${person.id})}">
+        <input type="submit" value="Delete" />
+
+    </form>
 
 
 </body>
+
 </html>

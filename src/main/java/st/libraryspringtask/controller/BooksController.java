@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import st.libraryspringtask.model.Book;
+import st.libraryspringtask.model.Person;
 import st.libraryspringtask.repository.BooksRepository;
+import st.libraryspringtask.repository.PeopleRepository;
 
 import java.util.List;
 
@@ -16,6 +18,7 @@ import java.util.List;
 @RequestMapping("/books")
 public class BooksController {
     private final BooksRepository bookRepository;
+    private final PeopleRepository peopleRepository;
 
     @GetMapping
     public String showAll(Model model) {
@@ -27,6 +30,8 @@ public class BooksController {
     @GetMapping("/{id}")
     public String index(@PathVariable("id") int id, Model model) {
         model.addAttribute("book", bookRepository.getBookById(id));
+        model.addAttribute("people", peopleRepository.findAll());
+        model.addAttribute("person", new Person());
         return "books/index";
     }
 
@@ -36,10 +41,9 @@ public class BooksController {
         return "books/edit";
     }
 
-    @PostMapping("/{id}")
+    @PatchMapping("/{id}")
     public String update(@ModelAttribute("book") Book book,
                          @PathVariable("id") int id) {
-
         bookRepository.update(id, book);
 
         return "redirect:/books";
@@ -58,15 +62,16 @@ public class BooksController {
         return "books/new";
     }
 
-    @PostMapping("/new")
+    @PatchMapping("/new")
     public String create(@ModelAttribute("person") Book book) {
         bookRepository.save(book);
         return "redirect:/books";
     }
 
-    @PostMapping("/{id}/edit")
+    @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         bookRepository.delete(id);
+
         return "redirect:/books";
     }
 }
