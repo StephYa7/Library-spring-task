@@ -17,7 +17,7 @@
     <br />
 
     <div th:if="${book.person_id == 0}">This book has no person
-        <form th:method="POST" th:action="@{/books/{id}}">
+        <form th:method="PATCH" th:action="@{/books/{id}/addPerson(id=${book.id})}">
 
             <label for="person">Choose person: </label>
             <select th:object="${person}" th:field="*{id}" id="person">
@@ -33,7 +33,7 @@
     <div th:unless="${book.person_id == 0}">
         <p th:text="'Book now at :' + ${book.person_id}">VALUE</p>
 
-        <form th:method="POST" th:action="@{/books/{id}}">
+        <form th:method="POST" th:action="@{/books/{id}(id=${book.id})}">
             <input type="submit" value="FREE THE BOOK" />
         </form>
     </div>

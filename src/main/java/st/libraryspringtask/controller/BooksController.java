@@ -63,7 +63,7 @@ public class BooksController {
     }
 
     @PatchMapping("/new")
-    public String create(@ModelAttribute("person") Book book) {
+    public String create(@ModelAttribute("book") Book book) {
         bookRepository.save(book);
         return "redirect:/books";
     }
@@ -73,5 +73,17 @@ public class BooksController {
         bookRepository.delete(id);
 
         return "redirect:/books";
+    }
+
+    @PostMapping("/{id}")
+    public String delPersonFromBook(@PathVariable("id") int id) {
+        bookRepository.removePersonId(id);
+        return "redirect:/books/{id}";
+    }
+
+    @PatchMapping("/{id}/addPerson")
+    public String addPersonInBook(@PathVariable("id") int id, @ModelAttribute("person") Person person) {
+        bookRepository.addPersonInBook(id, person.getId());
+        return "redirect:/books/{id}";
     }
 }

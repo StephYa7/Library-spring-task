@@ -41,4 +41,13 @@ public class BooksRepository {
     }
 
 
+    public void removePersonId(int id) {
+        String sql = "UPDATE books SET person_id=null WHERE book_id=?";
+        jdbcTemplate.update(sql, id);
+    }
+
+    public void addPersonInBook(int id,int person_id) {
+        String sql = "UPDATE books SET person_id=? WHERE book_id=?";
+        jdbcTemplate.update(sql,person_id, id);
+    }
 }
