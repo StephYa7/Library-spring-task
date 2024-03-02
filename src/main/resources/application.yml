@@ -4,6 +4,14 @@ spring:
     url: jdbc:postgresql://localhost:3367/library_db
     username: admin
     password: password
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: env, info, health, metrics, prometheus
 #    schema: schema.sql
 #  sql:
 #    init:
