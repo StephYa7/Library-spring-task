@@ -9,7 +9,9 @@ import st.libraryspringtask.model.Book;
 import st.libraryspringtask.model.Person;
 import st.libraryspringtask.repository.BooksRepository;
 import st.libraryspringtask.repository.PeopleRepository;
+import st.libraryspringtask.service.FileGateway;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Log
@@ -19,6 +21,7 @@ import java.util.List;
 public class BooksController {
     private final BooksRepository bookRepository;
     private final PeopleRepository peopleRepository;
+    private FileGateway fileGateway;
 
     @GetMapping
     public String showAll(Model model) {
@@ -53,6 +56,7 @@ public class BooksController {
     public String redactor(@PathVariable("id") int id, Model model) {
         Book book = bookRepository.getBookById(id);
         model.addAttribute("book", book);
+
         return "update";
     }
 
@@ -77,12 +81,21 @@ public class BooksController {
 
     @PostMapping("/{id}")
     public String delPersonFromBook(@PathVariable("id") int id) {
-        bookRepository.changePersonIdInBook(id,0);
+        bookRepository.changePersonIdInBook(id, 0);
+
+        LocalDateTime date = LocalDateTime.now();
+        fileGateway.writeToFile("whenBookBack.txt",
+                bookRepository.getBookById(id).getName() + " вернули " + date);
         return "redirect:/books/{id}";
     }
 
     @PatchMapping("/{id}/addPerson")
     public String addPersonInBook(@PathVariable("id") int id, @ModelAttribute("person") Person person) {
+        LocalDateTime date = LocalDateTime.now();
+        fileGateway.writeToFile("whoTakeBook.txt",
+                bookRepository.getBookById(id).getName() +
+                        " взял пользователь с id: " + person.getId() +
+                        " " + date);
         bookRepository.changePersonIdInBook(id, person.getId());
         return "redirect:/books/{id}";
     }
