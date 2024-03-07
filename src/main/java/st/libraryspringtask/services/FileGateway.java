@@ -1,4 +1,4 @@
-package st.libraryspringtask.service;
+package st.libraryspringtask.services;
 
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.file.FileHeaders;

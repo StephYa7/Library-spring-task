@@ -1,11 +1,11 @@
-package st.libraryspringtask.repository;
+package st.libraryspringtask.repositorys;
 
 
 import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import st.libraryspringtask.configs.DatabaseProperties;
-import st.libraryspringtask.model.Book;
+import st.libraryspringtask.models.Book;
 
 import java.util.List;
 

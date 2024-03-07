@@ -1,4 +1,4 @@
-package st.libraryspringtask.model;
+package st.libraryspringtask.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

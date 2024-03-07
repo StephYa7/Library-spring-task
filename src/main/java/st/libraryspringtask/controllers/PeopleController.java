@@ -1,12 +1,12 @@
-package st.libraryspringtask.controller;
+package st.libraryspringtask.controllers;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import st.libraryspringtask.model.Person;
-import st.libraryspringtask.repository.PeopleRepository;
+import st.libraryspringtask.models.Person;
+import st.libraryspringtask.repositorys.PeopleRepository;
 
 import java.util.List;
 

@@ -1,15 +1,18 @@
-package st.libraryspringtask.controller;
+package st.libraryspringtask.controllers;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import st.libraryspringtask.model.Book;
-import st.libraryspringtask.model.Person;
-import st.libraryspringtask.repository.BooksRepository;
-import st.libraryspringtask.repository.PeopleRepository;
-import st.libraryspringtask.service.FileGateway;
+import st.libraryspringtask.models.Book;
+import st.libraryspringtask.models.Person;
+import st.libraryspringtask.repositorys.BooksRepository;
+import st.libraryspringtask.repositorys.PeopleRepository;
+import st.libraryspringtask.services.FileGateway;
+import st.libraryspringtask.utils.sortStrategy.SortingStrategy;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,11 +24,13 @@ import java.util.List;
 public class BooksController {
     private final BooksRepository bookRepository;
     private final PeopleRepository peopleRepository;
+    private SortingStrategy byYearOfWriting;
     private FileGateway fileGateway;
 
     @GetMapping
     public String showAll(Model model) {
         List<Book> books = bookRepository.findAll();
+        byYearOfWriting.sort(books);
         model.addAttribute("books", books);
         return "books/list";
     }

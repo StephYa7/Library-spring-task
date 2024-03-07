@@ -1,8 +1,8 @@
-package st.libraryspringtask.repository;
+package st.libraryspringtask.repositorys;
 
 
 import org.springframework.jdbc.core.RowMapper;
-import st.libraryspringtask.model.Person;
+import st.libraryspringtask.models.Person;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

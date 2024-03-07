@@ -1,8 +1,8 @@
-package st.libraryspringtask.repository;
+package st.libraryspringtask.repositorys;
 
 
 import org.springframework.jdbc.core.RowMapper;
-import st.libraryspringtask.model.Book;
+import st.libraryspringtask.models.Book;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
